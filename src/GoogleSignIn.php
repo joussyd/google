@@ -19,7 +19,7 @@ class GoogleSignIn
 		$login_url = 'https://accounts.google.com/o/oauth2/v2/auth?scope=' 
 		. urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me') 
 		. '&redirect_uri=' 
-		. urlencode($client_redirect_url) . '&response_type=code&client_id=' 
+		. urlencode($redirect_url) . '&response_type=code&client_id=' 
 		. $client_id . '&access_type=online';
 
 		// return login url
