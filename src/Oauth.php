@@ -17,6 +17,14 @@ class Oauth extends Base
     -------------------------------*/
     /* Public Methods
     -------------------------------*/
+
+    /**
+     * 
+     * @param string $client_id      The Client id
+     * @param string $client_secret  The Client secret
+     * @param string $redirect_uri   The Client redirect Uri
+     * @return string
+     */
     public function __construct($client_id, $client_secret, $redirect_uri)
     {
 
@@ -49,11 +57,11 @@ class Oauth extends Base
     {
         // append scope in the Google's login url
         $login_url = self::GOOGLE_OAUTH_URL . '/v2/auth?scope=' 
-            . self::SCOPE
+            . urlencode(self::SCOPE)
             . '&redirect_uri=' 
-            . urlencode($this->redirect_url) 
+            . urlencode($this->redirect_uri) 
             . '&response_type=' . self::RESPONSE_TYPE
-            .'&client_id=' . $client_id 
+            .'&client_id=' . $this->client_id 
             . '&access_type=' . self::ACCESS_TYPE;
 
         // return login url
@@ -63,30 +71,33 @@ class Oauth extends Base
     /**
      * Get User's access token
      *
-     * @param string $code                      The Google authorization code
-     * @param string $client_id                 The App's Client ID
-     * @param string $client_redirect_url       The App's Client Redirect Url
-     * @param string $client_secret             The App's Client Secret
+     * @param string $code  The Google authorization code
      * @return string
      */
-    public function GetAccessToken($code)
+    public function getAccessToken($code)
     {    
-
+        // google oauth url
         $url = self::GOOGLE_OAUTH_URL . '/token';            
         
         // request for access token
         $post_data = 'client_id=' . $this->client_id 
-            . '&redirect_uri=' . $this->redirect_url 
+            . '&redirect_uri=' . $this->redirect_uri 
             . '&client_secret=' .$this->client_secret 
             . '&code='. $code 
             . '&grant_type=authorization_code';
 
+        // crete settings
         $settings = array(
-            'url'=> $url,
-            'post_data' => $post_data
+            'url'         => $url,
+            'post_data'   => $post_data,
+            'http_header' => ''
         );
 
-        $response = Factory::sendRequest($url, $post_data);
+        // send request
+        $response = Factory::sendRequest($settings);
+        
+        // return access token
+        return $response['access_token'];
     }
 
      /**

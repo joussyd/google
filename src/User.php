@@ -12,13 +12,23 @@ class User extends Base
      */
     public function _getUserInfo($access_token)
     {       
-        $settings = array(
-            'url'=> self::GOOGLE_PROFILE_URL,
-            'http_header' => array('Authorization: Bearer '. $access_token)
-        );
+        // Check if the access token is not empty
+        if(! empty($access_token)){
 
-        $response = Factory::sendRequest($settings);
+            // If not empty, build settings
+            $settings = array(
+                'url'         => self::GOOGLE_PROFILE_URL,
+                'http_header' => $access_token,
+                'post_data'   => ''
+            );
 
-        return $response;
+            //send request
+            $response = Factory::sendRequest($settings);
+
+            // return response
+            return $response;
+        }else{
+            return null;
+        }
     }
 }
