@@ -1,26 +1,38 @@
 <?php
-
+/**
+ * This file is part of the Compos Mentis Inc.
+ * PHP version 7+ (c) 2017 CMI
+ *
+ * Copyright and license information can be found at LICENSE
+ * distributed with this package.
+ *
+ * @category Class
+ * @package  Class
+ * @author   Joussyd Calupig <joussydmcalupig@gmail.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://joussydmcalupig.com
+ */
 namespace Redscript\Google;
 use Redscript\Google\Factory;
 
+/**
+ * Base Class
+ *
+ * PHP version 7+
+ *
+ * @category Class
+ * @author   Joussyd Calupig <joussydmcalupig@gmail.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://joussydmcalupig.com
+ */
 class Base 
 {
-	/* Constants
+    /* Constants
     -------------------------------*/
-	const GOOGLE_OAUTH_URL   = 'https://accounts.google.com/o/oauth2';
-	const RESPONSE_TYPE      = 'code';
-    const ACCESS_TYPE        = 'online';
-    const SCOPE              = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me';
-    const GOOGLE_PROFILE_URL = 'https://www.googleapis.com/plus/v1/people/me';
-
-	/* Public Properties
+    /* Public Properties
     -------------------------------*/
     /* Protected Properties
     -------------------------------*/
-    protected $client_id;
-	protected $client_secret;
-	protected $redirect_uri;
-	
     /* Private Properties
     -------------------------------*/
     /* Get

@@ -1,34 +1,68 @@
 <?php
-
+/**
+ * This file is part of the Compos Mentis Inc.
+ * PHP version 7+ (c) 2017 CMI
+ *
+ * Copyright and license information can be found at LICENSE
+ * distributed with this package.
+ *
+ * @category Class
+ * @package  User
+ * @author   Joussyd Calupig <joussydmcalupig@gmail.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://joussydmcalupig.com
+ */
 namespace Redscript\Google;
+use Exception;
 
-class User extends Base
+/**
+ * Factory Class
+ *
+ * PHP version 7+
+ *
+ * @category Class
+ * @author   Joussyd Calupig <joussydmcalupig@get_magic_quotes_gpc()l.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://joussydmcalupig.com
+ */
+class User extends Factory
 {
-	/**
-     * Get User's Basic info
+    /* Constants
+    -------------------------------*/
+    /* Public Methods
+    -------------------------------*/
+    /**
+    * User constructor
+    *
+    * @param  string $access  Token Access Token
+    */
+    public function __construct($accessToken)
+    {
+        $this->accessToken = $accessToken;
+    }
+
+    /**
+     * Get User's Profile info
      *
      *
      * @return json
      */
-    public function _getUserInfo($access_token)
+    public function getProfile()
     {       
         // Check if the access token is not empty
-        if(! empty($access_token)){
-
+        if(! empty($this->accessToken)){
             // If not empty, build settings
             $settings = array(
-                'url'         => self::GOOGLE_PROFILE_URL,
-                'http_header' => $access_token,
-                'post_data'   => ''
+                'url'         => self::API . self::PROFILE_URL,
+                'httpHeader' => $this->accessToken,
+                'postData'   => ''
             );
-
-            //send request
-            $response = Factory::sendRequest($settings);
-
+            // send request
+            $response = $this->sendRequest($settings);
             // return response
             return $response;
         }else{
-            return null;
+            throw new Exception('No access token provided');
         }
     }
 }
