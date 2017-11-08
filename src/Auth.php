@@ -60,9 +60,9 @@ class Auth extends Factory
         $scope = $this->scope;
 
         // append google api url to scopes
-        foreach ($scope as $key => $value) {
-            $scope[$key] = self::API . $value;
-        }
+        array_walk($scope, function(&$value, $key) { 
+                $value = self::API . $value; 
+        });
 
         // convert array to string delimited by space
         $scopeList = implode(' ', $scope);
