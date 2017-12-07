@@ -1,5 +1,5 @@
 {
-    "name": "redscript/google",
+    "name": "lethia/google",
     "description": "\"Google API\"",
     "authors": [
         {
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Redscript\\Google\\": "src/"
+            "Lethia\\Google\\": "src/"
         }
     }
 }

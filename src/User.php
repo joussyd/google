@@ -12,7 +12,7 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @link     http://joussydmcalupig.com
  */
-namespace Redscript\Google;
+namespace Lethia\Google;
 use Exception;
 
 /**

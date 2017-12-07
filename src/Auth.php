@@ -12,8 +12,8 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @link     http://joussydmcalupig.com
  */
-namespace Redscript\Google;
-use Redscript\Google\User;
+namespace Lethia\Google;
+use Lethia\Google\User;
 
 /**
  * Factory Class

@@ -13,9 +13,9 @@
  * @link     http://joussydmcalupig.com
  */
 
-namespace Redscript\Google;
-use Redscript\Google\User;
-use Redscript\Google\Auth;
+namespace Lethia\Google;
+use Lethia\Google\User;
+use Lethia\Google\Auth;
 
 /**
  * Factory Class
